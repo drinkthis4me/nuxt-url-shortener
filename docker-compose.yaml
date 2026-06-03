@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:18.4-alpine
+    restart: unless-stopped
+    # set shared memory limit
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+
+  # DB Management GUI
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080

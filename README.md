@@ -1,75 +1,80 @@
-# Nuxt Minimal Starter
+# Nuxt Full-Stack URL Shortener
+A high-performance, secure URL shortening service built with Nuxt, Prisma, and PostgreSQL.
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![Home page screenshot](doc/home_page.png)
+![Sign-in page screenshot](doc/sign_in_page.png)
+![Dashboard screenshot](doc/dashboard.png)
 
-## Setup
+## Key Features
+- Secure Redirects & Auth: Secure individual links with encrypted passwords.
+- Link Management: Soft deletion. Bulk Operations.
+- Performance & Reliability: Server middleware gatekeeper. Database-level projections.
 
-Make sure to install dependencies:
+# Setup
+## Env
+Create a `.env` file in root directory with your own values.
 
-```bash
-# npm
-npm install
+```sh
+DATABASE_USERNAME=username
+DATABASE_PASSWORD=password
+DATABASE_NAME=name
+# Prisma datasource url (See: prisma.config.ts)
+DATABASE_URL="postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_URL}/${DATABASE_NAME}?schema=public"
+# Nuxt Auth Utils session password
+NUXT_SESSION_PASSWORD=password-with-at-least-32-characters
+# Sqids custom alphabet (Optional)
+NUXT_SQIDS_ALPHABET="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
-# pnpm
+NUXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+## Database
+### Postgres
+Run docker compose to start `Postgres DB` and `Adminer` in containers.
+
+```sh
+docker compose up -d
+```
+
+Connect to the DB with this url:
+
+```
+postgresql://user:password@localhost:5432/urlshortener?schema=public
+```
+
+Or use the `Adminer` GUI.
+
+```
+http://localhost:8080
+
+System: PostgresSQL
+Server: db
+Username: user
+Password: password
+Database: urlshortner
+```
+
+# Start Dev Server
+Run commands
+
+```sh
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+# Prisma
+Server uses `Prisma ORM` to interact with DB.
 
-Build the application for production:
+### Generate
+The prisma generate command generates assets (like Prisma Client) based on the generator and data model blocks defined in the `schema.prisma` file.
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+pnpx prisma generate
 ```
 
-Locally preview production build:
+### Migration
+Use the command to create a migration from changes in Prisma schema, apply it to the dev database, and trigger generators.
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+pnpx prisma migrate dev --name your_description
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
