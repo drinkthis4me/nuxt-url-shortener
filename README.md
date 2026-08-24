@@ -12,52 +12,20 @@ A high-performance, secure URL shortening service built with Nuxt, Prisma, and P
 
 # Setup
 ## Env
-Create a `.env` file in root directory with your own values.
-
-```sh
-DATABASE_USERNAME=username
-DATABASE_PASSWORD=password
-DATABASE_NAME=name
-# Prisma datasource url (See: prisma.config.ts)
-DATABASE_URL="postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_URL}/${DATABASE_NAME}?schema=public"
-# Nuxt Auth Utils session password
-NUXT_SESSION_PASSWORD=password-with-at-least-32-characters
-# Sqids custom alphabet (Optional)
-NUXT_SQIDS_ALPHABET="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-NUXT_PUBLIC_APP_URL=http://localhost:3000
-```
+Create a `.env` file in root directory with your own values. (See: [.env.example](.env.example))
 
 ## Database
-### Postgres
-Run docker compose to start `Postgres DB` and `Adminer` in containers.
+### Sqlite
+Create database file with Prisma push command:
 
-```sh
-docker compose up -d
-```
-
-Connect to the DB with this url:
-
-```
-postgresql://user:password@localhost:5432/urlshortener?schema=public
-```
-
-Or use the `Adminer` GUI.
-
-```
-http://localhost:8080
-
-System: PostgresSQL
-Server: db
-Username: user
-Password: password
-Database: urlshortner
+```bash
+pnpx prisma push
 ```
 
 # Start Dev Server
 Run commands
 
-```sh
+```bash
 pnpm install
 pnpm dev
 ```
@@ -78,3 +46,13 @@ Use the command to create a migration from changes in Prisma schema, apply it to
 ```bash
 pnpx prisma migrate dev --name your_description
 ```
+
+# Production
+Create `.env.production` and run docker compose.
+
+```bash
+docker compose up --build -d
+```
+
+# License
+MIT

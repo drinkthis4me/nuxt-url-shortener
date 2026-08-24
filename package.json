@@ -8,6 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:deploy": "prisma migrate deploy && prisma generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -15,7 +17,7 @@
     "@internationalized/date": "^3.12.2",
     "@nuxt/image": "2.0.0",
     "@nuxt/ui": "^4.8.1",
-    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/adapter-better-sqlite3": "^7.9.1",
     "@prisma/client": "^7.8.0",
     "@tanstack/vue-table": "^8.21.3",
     "@vueuse/nuxt": "14.3.0",
@@ -23,7 +25,6 @@
     "nuxt": "^4.4.6",
     "nuxt-auth-utils": "0.5.29",
     "nuxt-echarts": "1.0.1",
-    "pg": "^8.21.0",
     "sqids": "^0.3.0",
     "tailwindcss": "^4.3.0",
     "ufo": "^1.6.4",
@@ -35,7 +36,6 @@
   "devDependencies": {
     "@nuxt/eslint": "1.15.2",
     "@types/node": "^25.9.1",
-    "@types/pg": "^8.20.0",
     "dotenv": "^17.4.2",
     "eslint": "^10.4.1",
     "prisma": "^7.8.0",
