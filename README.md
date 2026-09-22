@@ -1,5 +1,5 @@
 # Nuxt Full-Stack URL Shortener
-A high-performance, secure URL shortening service built with Nuxt, Prisma, and PostgreSQL.
+A high-performance, secure URL shortening service built with Nuxt, Prisma, and SQLite.
 
 ![Home page screenshot](doc/home_page.png)
 ![Sign-in page screenshot](doc/sign_in_page.png)
@@ -11,40 +11,26 @@ A high-performance, secure URL shortening service built with Nuxt, Prisma, and P
 - Performance & Reliability: Server middleware gatekeeper. Database-level projections.
 
 # Setup
+## Install dependencies
+
+```bash
+pnpm install
+```
+
 ## Env
 Create a `.env` file in root directory with your own values. (See: [.env.example](.env.example))
 
 ## Database
-### Sqlite
-Create database file with Prisma push command:
+Create SQLite database file with Prisma push command:
 
 ```bash
-pnpx prisma push
+pnpm prisma db push
 ```
 
-# Start Dev Server
-Run commands
+## Start Dev Server
 
 ```bash
-pnpm install
 pnpm dev
-```
-
-# Prisma
-Server uses `Prisma ORM` to interact with DB.
-
-### Generate
-The prisma generate command generates assets (like Prisma Client) based on the generator and data model blocks defined in the `schema.prisma` file.
-
-```bash
-pnpx prisma generate
-```
-
-### Migration
-Use the command to create a migration from changes in Prisma schema, apply it to the dev database, and trigger generators.
-
-```bash
-pnpx prisma migrate dev --name your_description
 ```
 
 # Production
